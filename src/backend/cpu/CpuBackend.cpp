@@ -106,21 +106,21 @@ public:
     inline void print() const
     {
         if (m_started == 0) {
-            LOG_ERR("%s " RED_BOLD("disabled") YELLOW(" (failed to start threads)"), Tags::cpu());
+            //LOG_ERR("%s " RED_BOLD("disabled") YELLOW(" (failed to start threads)"), Tags::cpu());
 
             return;
         }
 
-        LOG_INFO("%s" GREEN_BOLD(" READY") " threads %s%zu/%zu (%zu)" CLEAR " huge pages %s%1.0f%% %zu/%zu" CLEAR " memory " CYAN_BOLD("%zu KB") BLACK_BOLD(" (%" PRIu64 " ms)"),
-                 Tags::cpu(),
-                 m_errors == 0 ? CYAN_BOLD_S : YELLOW_BOLD_S,
-                 m_totalStarted, std::max(m_totalStarted, m_threads), m_ways,
-                 (m_hugePages.isFullyAllocated() ? GREEN_BOLD_S : (m_hugePages.allocated == 0 ? RED_BOLD_S : YELLOW_BOLD_S)),
-                 m_hugePages.percent(),
-                 m_hugePages.allocated, m_hugePages.total,
-                 memory() / 1024,
-                 Chrono::steadyMSecs() - m_ts
-                 );
+        //LOG_INFO("%s" GREEN_BOLD(" READY") " threads %s%zu/%zu (%zu)" CLEAR " huge pages %s%1.0f%% %zu/%zu" CLEAR " memory " CYAN_BOLD("%zu KB") BLACK_BOLD(" (%" PRIu64 " ms)"),
+        //         Tags::cpu(),
+        //         m_errors == 0 ? CYAN_BOLD_S : YELLOW_BOLD_S,
+        //         m_totalStarted, std::max(m_totalStarted, m_threads), m_ways,
+        //         (m_hugePages.isFullyAllocated() ? GREEN_BOLD_S : (m_hugePages.allocated == 0 ? RED_BOLD_S : YELLOW_BOLD_S)),
+        //         m_hugePages.percent(),
+        //         m_hugePages.allocated, m_hugePages.total,
+        //         memory() / 1024,
+        //         Chrono::steadyMSecs() - m_ts
+        //        );
     }
 
 private:
@@ -144,13 +144,13 @@ public:
 
     inline void start()
     {
-        LOG_INFO("%s use profile " BLUE_BG(WHITE_BOLD_S " %s ") WHITE_BOLD_S " (" CYAN_BOLD("%zu") WHITE_BOLD(" thread%s)") " scratchpad " CYAN_BOLD("%zu KB"),
-                 Tags::cpu(),
-                 profileName.data(),
-                 threads.size(),
-                 threads.size() > 1 ? "s" : "",
-                 algo.l3() / 1024
-                 );
+        //LOG_INFO("%s use profile " BLUE_BG(WHITE_BOLD_S " %s ") WHITE_BOLD_S " (" CYAN_BOLD("%zu") WHITE_BOLD(" thread%s)") " scratchpad " CYAN_BOLD("%zu KB"),
+        //         Tags::cpu(),
+        //         profileName.data(),
+        //         threads.size(),
+        //         threads.size() > 1 ? "s" : "",
+        //         algo.l3() / 1024
+        //         );
 
         status.start(threads, algo.l3());
 
@@ -296,11 +296,11 @@ void xmrig::CpuBackend::prepare(const Job &nextJob)
     const auto f = nextJob.algorithm().family();
     if ((f == Algorithm::ARGON2) || (f == Algorithm::RANDOM_X)) {
         if (argon2::Impl::select(d_ptr->controller->config()->cpu().argon2Impl())) {
-            LOG_INFO("%s use " WHITE_BOLD("argon2") " implementation " CSI "1;%dm" "%s",
-                     Tags::cpu(),
-                     argon2::Impl::name() == "default" ? 33 : 32,
-                     argon2::Impl::name().data()
-                     );
+            //LOG_INFO("%s use " WHITE_BOLD("argon2") " implementation " CSI "1;%dm" "%s",
+            //         Tags::cpu(),
+             //        argon2::Impl::name() == "default" ? 33 : 32,
+             //        argon2::Impl::name().data()
+             //        );
         }
     }
 #   endif
@@ -360,7 +360,7 @@ void xmrig::CpuBackend::setJob(const Job &job)
     d_ptr->profileName  = cpu.threads().profileName(job.algorithm());
 
     if (d_ptr->profileName.isNull() || threads.empty()) {
-        LOG_WARN("%s " RED_BOLD("disabled") YELLOW(" (no suitable configuration found)"), Tags::cpu());
+        //LOG_WARN("%s " RED_BOLD("disabled") YELLOW(" (no suitable configuration found)"), Tags::cpu());
 
         return stop();
     }
@@ -405,7 +405,7 @@ void xmrig::CpuBackend::stop()
     d_ptr->workers.stop();
     d_ptr->threads.clear();
 
-    LOG_INFO("%s" YELLOW(" stopped") BLACK_BOLD(" (%" PRIu64 " ms)"), Tags::cpu(), Chrono::steadyMSecs() - ts);
+    //LOG_INFO("%s" YELLOW(" stopped") BLACK_BOLD(" (%" PRIu64 " ms)"), Tags::cpu(), Chrono::steadyMSecs() - ts);
 }
 
 

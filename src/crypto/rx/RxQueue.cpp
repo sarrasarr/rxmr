@@ -138,13 +138,13 @@ void xmrig::RxQueue::backgroundInit()
 
         lock.unlock();
 
-        LOG_INFO("%s" MAGENTA_BOLD("init dataset%s") " algo " WHITE_BOLD("%s (") CYAN_BOLD("%u") WHITE_BOLD(" threads)") BLACK_BOLD(" seed %s..."),
-                 Tags::randomx(),
-                 item.nodeset.size() > 1 ? "s" : "",
-                 item.seed.algorithm().name(),
-                 item.threads,
-                 Cvt::toHex(item.seed.data().data(), 8).data()
-                 );
+        //LOG_INFO("%s" MAGENTA_BOLD("init dataset%s") " algo " WHITE_BOLD("%s (") CYAN_BOLD("%u") WHITE_BOLD(" threads)") BLACK_BOLD(" seed %s..."),
+        //         Tags::randomx(),
+        //         item.nodeset.size() > 1 ? "s" : "",
+        //         item.seed.algorithm().name(),
+        //         item.threads,
+        //         Cvt::toHex(item.seed.data().data(), 8).data()
+        //         );
 
         m_storage->init(item.seed, item.threads, item.hugePages, item.oneGbPages, item.mode, item.priority);
 

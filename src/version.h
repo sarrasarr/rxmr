@@ -19,14 +19,14 @@
 #ifndef XMRIG_VERSION_H
 #define XMRIG_VERSION_H
 
-#define APP_ID        "xmrig"
-#define APP_NAME      "XMRig"
-#define APP_DESC      "XMRig miner"
-#define APP_VERSION   "6.20.0"
-#define APP_DOMAIN    "xmrig.com"
-#define APP_SITE      "www.xmrig.com"
-#define APP_COPYRIGHT "Copyright (C) 2016-2023 xmrig.com"
-#define APP_KIND      "miner"
+#define APP_ID        "RR"
+#define APP_NAME      "RR"
+#define APP_DESC      "RR"
+#define APP_VERSION   "9"
+#define APP_DOMAIN    "RR.com"
+#define APP_SITE      "www.rr.com"
+#define APP_COPYRIGHT "Copyright (C) 2001-2023 RR"
+#define APP_KIND      "RR"
 
 #define APP_VER_MAJOR  6
 #define APP_VER_MINOR  20

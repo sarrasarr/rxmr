@@ -79,7 +79,7 @@ private:
 xmrig::Msr::Msr() : d_ptr(new MsrPrivate())
 {
     if (!isAvailable()) {
-        LOG_WARN("%s " YELLOW_BOLD("msr kernel module is not available"), tag());
+        //LOG_WARN("%s " YELLOW_BOLD("msr kernel module is not available"), tag());
     }
 }
 

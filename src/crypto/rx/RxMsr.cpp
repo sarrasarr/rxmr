@@ -146,16 +146,16 @@ bool xmrig::RxMsr::init(const RxConfig &config, const std::vector<CpuThread> &th
     m_cacheQoS        = config.cacheQoS();
 
     if (m_cacheQoS && !Cpu::info()->hasCatL3()) {
-        LOG_WARN("%s " YELLOW_BOLD("this CPU doesn't support cat_l3, cache QoS is unavailable"), Msr::tag());
+        //LOG_WARN("%s " YELLOW_BOLD("this CPU doesn't support cat_l3, cache QoS is unavailable"), Msr::tag());
 
         m_cacheQoS = false;
     }
 
     if ((m_enabled = wrmsr(preset, threads, m_cacheQoS, config.rdmsr()))) {
-        LOG_NOTICE("%s " GREEN_BOLD("register values for \"%s\" preset have been set successfully") BLACK_BOLD(" (%" PRIu64 " ms)"), Msr::tag(), config.msrPresetName(), Chrono::steadyMSecs() - ts);
+        //LOG_NOTICE("%s " GREEN_BOLD("register values for \"%s\" preset have been set successfully") BLACK_BOLD(" (%" PRIu64 " ms)"), Msr::tag(), config.msrPresetName(), Chrono::steadyMSecs() - ts);
     }
     else {
-        LOG_ERR("%s " RED_BOLD("FAILED TO APPLY MSR MOD, HASHRATE WILL BE LOW"), Msr::tag());
+        //LOG_ERR("%s " RED_BOLD("FAILED TO APPLY MSR MOD, HASHRATE WILL BE LOW"), Msr::tag());
     }
 
     return isEnabled();

@@ -61,13 +61,13 @@ static bool bindToNUMANode(uint32_t nodeId)
 
 static inline void printSkipped(uint32_t nodeId, const char *reason)
 {
-    LOG_WARN("%s" CYAN_BOLD("#%u ") RED_BOLD("skipped") YELLOW(" (%s)"), Tags::randomx(), nodeId, reason);
+    //LOG_WARN("%s" CYAN_BOLD("#%u ") RED_BOLD("skipped") YELLOW(" (%s)"), Tags::randomx(), nodeId, reason);
 }
 
 
 static inline void printDatasetReady(uint32_t nodeId, uint64_t ts)
 {
-    LOG_INFO("%s" CYAN_BOLD("#%u ") GREEN_BOLD("dataset ready") BLACK_BOLD(" (%" PRIu64 " ms)"), Tags::randomx(), nodeId, Chrono::steadyMSecs() - ts);
+    //LOG_INFO("%s" CYAN_BOLD("#%u ") GREEN_BOLD("dataset ready") BLACK_BOLD(" (%" PRIu64 " ms)"), Tags::randomx(), nodeId, Chrono::steadyMSecs() - ts);
 }
 
 
@@ -131,7 +131,7 @@ public:
         if (m_datasets.empty()) {
             m_datasets.insert({ m_nodeset.front(), new RxDataset(m_cache) });
 
-            LOG_WARN(CLEAR "%s" YELLOW_BOLD_S "failed to allocate RandomX datasets, switching to slow mode" BLACK_BOLD(" (%" PRIu64 " ms)"), Tags::randomx(), Chrono::steadyMSecs() - ts);
+            //LOG_WARN(CLEAR "%s" YELLOW_BOLD_S "failed to allocate RandomX datasets, switching to slow mode" BLACK_BOLD(" (%" PRIu64 " ms)"), Tags::randomx(), Chrono::steadyMSecs() - ts);
         }
         else {
             if (m_cache) {
@@ -241,7 +241,7 @@ private:
         if (!cache->get()) {
             delete cache;
 
-            LOG_INFO("%s" RED_BOLD("failed to allocate RandomX memory") BLACK_BOLD(" (%" PRIu64 " ms)"), Tags::randomx(), Chrono::steadyMSecs() - ts);
+            //LOG_INFO("%s" RED_BOLD("failed to allocate RandomX memory") BLACK_BOLD(" (%" PRIu64 " ms)"), Tags::randomx(), Chrono::steadyMSecs() - ts);
 
             return;
         }
@@ -266,14 +266,14 @@ private:
     {
         const auto pages = dataset->hugePages();
 
-        LOG_INFO("%s" CYAN_BOLD("#%u ") GREEN_BOLD("allocated") CYAN_BOLD(" %zu MB") " huge pages %s%3.0f%%" CLEAR BLACK_BOLD(" (%" PRIu64 " ms)"),
-                 Tags::randomx(),
-                 nodeId,
-                 pages.size / oneMiB,
-                 (pages.isFullyAllocated() ? GREEN_BOLD_S : RED_BOLD_S),
-                 pages.percent(),
-                 Chrono::steadyMSecs() - ts
-                 );
+        //LOG_INFO("%s" CYAN_BOLD("#%u ") GREEN_BOLD("allocated") CYAN_BOLD(" %zu MB") " huge pages %s%3.0f%%" CLEAR BLACK_BOLD(" (%" PRIu64 " ms)"),
+        //         Tags::randomx(),
+        //         nodeId,
+        //         pages.size / oneMiB,
+        //         (pages.isFullyAllocated() ? GREEN_BOLD_S : RED_BOLD_S),
+        //         pages.percent(),
+        //         Chrono::steadyMSecs() - ts
+        //         );
     }
 
 
@@ -281,15 +281,15 @@ private:
     {
         const auto pages = cache->hugePages();
 
-        LOG_INFO("%s" CYAN_BOLD("#%u ") GREEN_BOLD("allocated") CYAN_BOLD(" %4zu MB") " huge pages %s%3.0f%%" CLEAR " %sJIT" BLACK_BOLD(" (%" PRIu64 " ms)"),
-                 Tags::randomx(),
-                 nodeId,
-                 cache->size() / oneMiB,
-                 (pages.isFullyAllocated() ? GREEN_BOLD_S : RED_BOLD_S),
-                 pages.percent(),
-                 cache->isJIT() ? GREEN_BOLD_S "+" : RED_BOLD_S "-",
-                 Chrono::steadyMSecs() - ts
-                 );
+        //LOG_INFO("%s" CYAN_BOLD("#%u ") GREEN_BOLD("allocated") CYAN_BOLD(" %4zu MB") " huge pages %s%3.0f%%" CLEAR " %sJIT" BLACK_BOLD(" (%" PRIu64 " ms)"),
+        //         Tags::randomx(),
+         //        nodeId,
+        //         cache->size() / oneMiB,
+        //         (pages.isFullyAllocated() ? GREEN_BOLD_S : RED_BOLD_S),
+        //         pages.percent(),
+        //         cache->isJIT() ? GREEN_BOLD_S "+" : RED_BOLD_S "-",
+        //         Chrono::steadyMSecs() - ts
+        //         );
     }
 
 
@@ -297,15 +297,15 @@ private:
     {
         auto pages = hugePages();
 
-        LOG_INFO("%s" CYAN_BOLD("-- ") GREEN_BOLD("allocated") CYAN_BOLD(" %4zu MB") " huge pages %s%3.0f%% %u/%u" CLEAR BLACK_BOLD(" (%" PRIu64 " ms)"),
-                 Tags::randomx(),
-                 pages.size / oneMiB,
-                 (pages.isFullyAllocated() ? GREEN_BOLD_S : (pages.allocated == 0 ? RED_BOLD_S : YELLOW_BOLD_S)),
-                 pages.percent(),
-                 pages.allocated,
-                 pages.total,
-                 Chrono::steadyMSecs() - ts
-                 );
+        //LOG_INFO("%s" CYAN_BOLD("-- ") GREEN_BOLD("allocated") CYAN_BOLD(" %4zu MB") " huge pages %s%3.0f%% %u/%u" CLEAR BLACK_BOLD(" (%" PRIu64 " ms)"),
+         //        Tags::randomx(),
+         //        pages.size / oneMiB,
+        //         (pages.isFullyAllocated() ? GREEN_BOLD_S : (pages.allocated == 0 ? RED_BOLD_S : YELLOW_BOLD_S)),
+        //         pages.percent(),
+         //        pages.allocated,
+         //        pages.total,
+         //        Chrono::steadyMSecs() - ts
+         //        );
     }
 
 
