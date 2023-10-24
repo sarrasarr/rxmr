@@ -68,7 +68,7 @@ public:
         if (!m_dataset->cache()->get()) {
             deleteDataset();
 
-            LOG_INFO("%s" RED_BOLD("failed to allocate RandomX memory") BLACK_BOLD(" (%" PRIu64 " ms)"), Tags::randomx(), Chrono::steadyMSecs() - ts);
+            //LOG_INFO("%s" RED_BOLD("failed to allocate RandomX memory") BLACK_BOLD(" (%" PRIu64 " ms)"), Tags::randomx(), Chrono::steadyMSecs() - ts);
 
             return false;
         }
@@ -86,7 +86,7 @@ public:
         m_ready = m_dataset->init(m_seed.data(), threads, priority);
 
         if (m_ready) {
-            LOG_INFO("%s" GREEN_BOLD("dataset ready") BLACK_BOLD(" (%" PRIu64 " ms)"), Tags::randomx(), Chrono::steadyMSecs() - ts);
+            //LOG_INFO("%s" GREEN_BOLD("dataset ready") BLACK_BOLD(" (%" PRIu64 " ms)"), Tags::randomx(), Chrono::steadyMSecs() - ts);
         }
     }
 
@@ -97,21 +97,21 @@ private:
         if (m_dataset->get() != nullptr) {
             const auto pages = m_dataset->hugePages();
 
-            LOG_INFO("%s" GREEN_BOLD("allocated") CYAN_BOLD(" %zu MB") BLACK_BOLD(" (%zu+%zu)") " huge pages %s%1.0f%% %u/%u" CLEAR " %sJIT" BLACK_BOLD(" (%" PRIu64 " ms)"),
-                     Tags::randomx(),
-                     pages.size / oneMiB,
-                     RxDataset::maxSize() / oneMiB,
-                     RxCache::maxSize() / oneMiB,
-                     (pages.isFullyAllocated() ? GREEN_BOLD_S : (pages.allocated == 0 ? RED_BOLD_S : YELLOW_BOLD_S)),
-                     pages.percent(),
-                     pages.allocated,
-                     pages.total,
-                     m_dataset->cache()->isJIT() ? GREEN_BOLD_S "+" : RED_BOLD_S "-",
-                     Chrono::steadyMSecs() - ts
-                     );
+            //LOG_INFO("%s" GREEN_BOLD("allocated") CYAN_BOLD(" %zu MB") BLACK_BOLD(" (%zu+%zu)") " huge pages %s%1.0f%% %u/%u" CLEAR " %sJIT" BLACK_BOLD(" (%" PRIu64 " ms)"),
+            //         Tags::randomx(),
+            //         pages.size / oneMiB,
+            //         RxDataset::maxSize() / oneMiB,
+            //         RxCache::maxSize() / oneMiB,
+            //         (pages.isFullyAllocated() ? GREEN_BOLD_S : (pages.allocated == 0 ? RED_BOLD_S : YELLOW_BOLD_S)),
+             //        pages.percent(),
+            //         pages.allocated,
+            //         pages.total,
+            //         m_dataset->cache()->isJIT() ? GREEN_BOLD_S "+" : RED_BOLD_S "-",
+            //         Chrono::steadyMSecs() - ts
+            //         );
         }
         else {
-            LOG_WARN(CLEAR "%s" YELLOW_BOLD_S "failed to allocate RandomX dataset, switching to slow mode" BLACK_BOLD(" (%" PRIu64 " ms)"), Tags::randomx(), Chrono::steadyMSecs() - ts);
+            //LOG_WARN(CLEAR "%s" YELLOW_BOLD_S "failed to allocate RandomX dataset, switching to slow mode" BLACK_BOLD(" (%" PRIu64 " ms)"), Tags::randomx(), Chrono::steadyMSecs() - ts);
         }
     }
 
